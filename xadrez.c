@@ -4,29 +4,53 @@
 // Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
 // O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
 
+#include <stdio.h>
+
+#define BISEP_DIAG 5
+#define TORRE_PASSOS 5
+#define RAINHA_PASSOS 8
+
+void bispo(int casas, int linha, int coluna) {
+    if (casas == 0) return;
+    linha++;
+    coluna++;
+    printf("Bispo: Cima-Direita -> (%d, %d)\n", linha, coluna);
+    bispo(casas - 1, linha, coluna);
+}
+
+void torre() {
+    for (int i = 1; i <= TORRE_PASSOS; i++) {
+        printf("Torre: Direita -> (%d)\n", i);
+    }
+}
+
+void rainha() {
+    for (int i = RAINHA_PASSOS; i >= 1; i--) {
+        printf("Rainha: Esquerda -> (%d)\n", i);
+    }
+}
+
+void cavalo() {
+    for (int i = 0; i < 1; i++) {
+        for (int j = 0; j < 2; j++) {
+            if (j == 0) {
+                printf("Cavalo: Baixo -> (-1)\n");
+                continue;
+            }
+            printf("Cavalo: Esquerda -> (-2)\n");
+            break;
+        }
+    }
+}
+
 int main() {
-    // Nível Novato - Movimentação das Peças
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
+    int linha_inicial = 0;
+    int coluna_inicial = 0;
 
-    // Implementação de Movimentação do Bispo
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
-
-    // Implementação de Movimentação da Torre
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
-
-    // Implementação de Movimentação da Rainha
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
-
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
-
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
-
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
+    bispo(BISEP_DIAG, linha_inicial, coluna_inicial);
+    torre();
+    rainha();
+    cavalo();
 
     return 0;
 }
